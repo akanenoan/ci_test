@@ -21,7 +21,10 @@ jobs:
             if [[ "${CI_REMOTE_BUILD_RELEASE}" == 1 ]]; then
               echo "run deployment..."
               echo ${CI_REMOTE_TAG_RELEASE}
-              echo $CIRCLE_API_TOKEN
+              echo ${CIRCLE_API_TOKEN}
+              echo $CIRCLE_PROJECT_USERNAME
+              echo $CIRCLE_PROJECT_REPONAME
+              echo $CIRCLE_BRANCH
               curl \
                 --data build_parameters[CIRCLE_JOB]=deployment \
                 --data build_parameters[CI_REMOTE_BUILD_RELEASE]=1 \
