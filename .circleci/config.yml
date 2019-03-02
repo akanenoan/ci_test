@@ -22,7 +22,7 @@ jobs:
               echo "run deployment..."
               echo ${CI_REMOTE_TAG_RELEASE}
               curl \
-                --user ${CIRCLE_API_TOKEN}:
+                --user ${CIRCLE_API_TOKEN}
                 --data build_parameters[CIRCLE_JOB]=deployment \
                 --data build_parameters[CI_REMOTE_BUILD_RELEASE]=1 \
                 --data build_parameters[CI_REMOTE_TAG_RELEASE]=${CI_REMOTE_TAG_RELEASE} \
