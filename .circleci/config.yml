@@ -14,11 +14,11 @@ jobs:
           name: conditionally run a deploy job
           command: |
             # replace this with your build/deploy check (i.e. current branch is "release")
-            if [[ true ]]; then
+            if [[ "${CI_REMOTE_BUILD_RELEASE}" == 1 ]]; then
               curl \
                 --data build_parameters[CIRCLE_JOB]=deployment \
                 --data build_parameters[CI_REMOTE_BUILD_RELEASE]=1 \
-                https://circleci.com/api/v1.1/project/github/akanenoan/ci_test/tree/develop?circle-token=2104ff7c2f32118ae5177046f57bed0a22b644f6
+                https://circleci.com/api/v1.1/project/github/akanenoan/ci_test/tree/master?circle-token=2104ff7c2f32118ae5177046f57bed0a22b644f6
             fi
   deployment:
     working_directory: ~/share/htdocs
