@@ -15,6 +15,7 @@ jobs:
           command: |
             # replace this with your build/deploy check (i.e. current branch is "release")
             if [[ "${CI_REMOTE_BUILD_RELEASE}" == 1 ]]; then
+              echo "run deployment..."
               curl \
                 --data build_parameters[CIRCLE_JOB]=deployment \
                 --data build_parameters[CI_REMOTE_BUILD_RELEASE]=1 \
