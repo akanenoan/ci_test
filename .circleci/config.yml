@@ -8,7 +8,7 @@ jobs:
       - image: circleci/mysql:5.6
     steps:
       - run:
-        command: echo 'build...'
+            command: echo "build..."
       - checkout
       - deploy:
           name: conditionally run a deploy job
@@ -26,7 +26,7 @@ jobs:
       - image: circleci/php:5.6-node-browsers-legacy
     steps:
       - run:
-        command: echo 'deployment...'
+            command: echo "deployment..."
 workflows:
   version: 2
   features:
