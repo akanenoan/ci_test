@@ -5,6 +5,7 @@ jobs:
     environment: &environment
       # CircleCI API Base URI
       CI_API_BASE: "https://circleci.com/api/v1.1"
+      CI_API_TOKEN: "b441604a503dda0a7ce9d1777941003979ef529d"
 
     working_directory: ~/share/htdocs
     docker:
@@ -21,7 +22,6 @@ jobs:
             if [[ "${CI_REMOTE_BUILD_RELEASE}" == 1 ]]; then
               echo "run deployment..."
               echo ${CI_REMOTE_TAG_RELEASE}
-              echo ${CIRCLE_API_TOKEN}
               echo $CIRCLE_PROJECT_USERNAME
               echo $CIRCLE_PROJECT_REPONAME
               echo $CIRCLE_BRANCH
@@ -29,7 +29,7 @@ jobs:
                 --data build_parameters[CIRCLE_JOB]=deployment \
                 --data build_parameters[CI_REMOTE_BUILD_RELEASE]=1 \
                 --data build_parameters[CI_REMOTE_TAG_RELEASE]=${CI_REMOTE_TAG_RELEASE} \
-                ${CI_API_BASE}/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/tree/$CIRCLE_BRANCH?circle-token=$CIRCLE_API_TOKEN
+                ${CI_API_BASE}/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/tree/$CIRCLE_BRANCH?circle-token=${CI_API_TOKEN}
             fi
   deployment:
     working_directory: ~/share/htdocs
