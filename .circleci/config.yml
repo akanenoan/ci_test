@@ -23,8 +23,8 @@ jobs:
               echo ${CI_REMOTE_TAG_RELEASE}
               echo ${CI_API_TOKEN}
               echo $CI_API_TOKEN
-              echo $CIRCLE_PROJECT_USERNAME
-              echo $CIRCLE_PROJECT_REPONAME
+              echo "project username is ${CIRCLE_PROJECT_USERNAME}"
+              echo "project reponame is ${CIRCLE_PROJECT_REPONAME}"
               echo $CIRCLE_BRANCH
               curl \
                 --data build_parameters[CIRCLE_JOB]=deployment \
