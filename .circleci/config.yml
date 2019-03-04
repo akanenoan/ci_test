@@ -5,7 +5,6 @@ jobs:
     environment: &environment
       # CircleCI API Base URI
       CI_API_BASE: "https://circleci.com/api/v1.1"
-      CI_API_TOKEN: "b441604a503dda0a7ce9d1777941003979ef529d"
 
     working_directory: ~/share/htdocs
     docker:
@@ -22,6 +21,8 @@ jobs:
             if [[ "${CI_REMOTE_BUILD_RELEASE}" == 1 ]]; then
               echo "run deployment..."
               echo ${CI_REMOTE_TAG_RELEASE}
+              echo ${CI_API_TOKEN}
+              echo $CI_API_TOKEN
               echo $CIRCLE_PROJECT_USERNAME
               echo $CIRCLE_PROJECT_REPONAME
               echo $CIRCLE_BRANCH
