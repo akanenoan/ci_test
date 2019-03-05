@@ -37,6 +37,20 @@ jobs:
                 --data build_parameters[CI_REMOTE_BUILD_RELEASE]=1 \
                 --data build_parameters[CI_REMOTE_TAG_RELEASE]=${CI_REMOTE_TAG_RELEASE} \
                 $CI_API_BASE/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/tree/$CIRCLE_BRANCH?circle-token=$CI_API_TOKEN
+            elif [[ "${CI_DEPLOY_PRODUCTION_RELEASE}" == 1 ]]; then
+              echo "run production release..."
+              echo "curl \
+                --data build_parameters[CIRCLE_JOB]=deployment \
+                --data build_parameters[CI_DEPLOY_PRODUCTION_RELEASE]=1 \
+                --data build_parameters[CI_REMOTE_BUILD_TAG]=${CI_REMOTE_BUILD_TAG} \
+                --data build_parameters[CI_REMOTE_EXECUTE_SKIP]=${CI_REMOTE_EXECUTE_SKIP} \
+                ${CI_API_BASE}/project/github/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/tree/${CIRCLE_BRANCH}?circle-token=${CI_CIRCLE_API_TOKEN}"
+              curl \
+                --data build_parameters[CIRCLE_JOB]=deployment \
+                --data build_parameters[CI_DEPLOY_PRODUCTION_RELEASE]=1 \
+                --data build_parameters[CI_REMOTE_BUILD_TAG]=$CI_REMOTE_BUILD_TAG \
+                --data build_parameters[CI_REMOTE_EXECUTE_SKIP]=$CI_REMOTE_EXECUTE_SKIP \
+                $CI_API_BASE/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/tree/$CIRCLE_BRANCH?circle-token=$CI_CIRCLE_API_TOKEN
             fi
   deployment:
     working_directory: ~/share/htdocs
